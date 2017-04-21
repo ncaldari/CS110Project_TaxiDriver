@@ -1,9 +1,8 @@
 class taxi:
-	def __init__(self, color='yellow', xcoor=0, ycoor=0, model='taxi.png'):
+	def __init__(self, color='yellow', xcoor=0, ycoor=0):
 		self.xcoor = xcoor
 		self.ycoor = ycoor
 		self.color = color
-		self.model = model
 
 	def moveLeft(self):
 		if self.xcoor != -1:
@@ -21,12 +20,11 @@ class taxi:
 
 
 class obstacle:
-	def __init__(self, xcoor, ycoor=100, speed=10, color='gray', model='obstacle.png'):
+	def __init__(self, xcoor, ycoor=100, speed=10, color='gray'):
 		self.color = color
 		self.xcoor = xcoor
 		self.ycoor = ycoor
 		self.speed = speed
-		self.model = model
 
 	def move(self, speed):
 		while self.ycoor >= 0:
