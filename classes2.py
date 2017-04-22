@@ -2,20 +2,31 @@ import pygame
 
 #needed to capitalize class names
 class Taxi:
-	def __init__(self, color='yellow'):
+	def __init__(self, start_x = 250, color='yellow'):
 		#self.xcoor = xcoor
 		#self.ycoor = ycoor
+		self.start_x = start_x
 		self.color = color
 		#pygame.Rect(xcoor, ycoor, width, height)
-		self.shape = pygame.Rect(250,460, 10, 40)
+		self.shape = pygame.Rect(self.start_x,460, 10, 40)
 
-	def moveLeft(self):
+	def moveLeft(self, start_x = 250):
+		#self.start_x = 250
+		if self.start_x != 150:
+			self.start_x -= 100
+			'''
 		if self.shape != 150:
-			self.shape -= 100
+			self.shape = self.shape - 100
+			'''
 
-	def moveRight(self):
+	def moveRight(self, start_x = 250):
+		#self.start_x = 250
+		if self.start_x != 350:
+			self.start_x += 100
+			'''
 		if self.xcoor != 350:
 			self.xcoor += 100
+			'''
 
 	def __str__(self):
 		mystr = ''
@@ -35,7 +46,7 @@ class Obstacle:
 		while self.ycoor >= 0:
 			self.ycoor -= speed
 
-	def place():
+	#def place():
 
 	def __str__(self):
 		mystr = ''
@@ -43,3 +54,4 @@ class Obstacle:
 		mystr += 'Color: ' + self.color + '\n'
 		mystr += 'Speed: ' + str(self.speed)
 		return mystr
+
