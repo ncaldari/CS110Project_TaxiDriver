@@ -15,7 +15,7 @@ class Taxidriver:
         blue = (0,0,255)
         green = (0,220,0)
 
-        
+
         mytaxi = Taxi()
         #myobstacle = Obstacle()
         #myobstacle2 = Obstacle()
@@ -37,6 +37,7 @@ class Taxidriver:
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_SPACE:
                         gamestartExit = True
+
                         self.gameView = pygame.display.set_mode((500,500))
                         pygame.display.set_caption('Taxi Driver')
                         gameExit = False
@@ -49,8 +50,29 @@ class Taxidriver:
                                         mytaxi.moveLeft()
                                     if event.type == pygame.K_RIGHT:
                                         mytaxi.moveRight()
+                                '''
+                                if pygame.Rect.collidelist(theTaxi,obstacle1, obstacle2) != -1:
+                                    gameExit = True
 
-                            pygame.draw.rect(self.gameView, blue, mytaxi.shape) #[xcoor,ycoor,width,height]
+                                    self.gameoverExit = pygame.display.set_mode((500,500))
+                                    pygame.display.set_caption('Taxi Driver Game Over')
+                                    text_objects = font.render("Game Over", True, green)
+                                    text_objects = font.render("Play Again? Hit the Space Bar.", True, green)
+                                    gameoverExit = False
+                                    while not gameoverExit:
+                                        for event in pygame.event.get():
+                                            if event.type == pygame.QUIT:
+                                                gameoverExit = True
+                                            if event.type == pygame.KEYDOWN:
+                                                if event.key == pygame.K_SPACE:
+                                                    gamestartExit = False
+                                        pygame.display.flip()
+                                '''
+
+
+                            theTaxi = pygame.draw.rect(self.gameView, blue, mytaxi.shape) #[xcoor,ycoor,width,height]
+                            #obstacle1 = pygame.draw.rect(self.gameView,blue, myobstacle.shape)
+                            #obstacle2 = pygame.draw.rect(self.gameView,blue, myobstacle2.shape)
                             #myobstacle.place
                             #myobstacle.place
                             pygame.display.flip()
