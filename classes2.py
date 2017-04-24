@@ -54,4 +54,3 @@ class Obstacle:
 		mystr += 'Color: ' + self.color + '\n'
 		mystr += 'Speed: ' + str(self.speed)
 		return mystr
-
