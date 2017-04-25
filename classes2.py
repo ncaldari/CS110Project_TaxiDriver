@@ -10,23 +10,25 @@ class Taxi:
 		#pygame.Rect(xcoor, ycoor, width, height)
 		self.shape = pygame.Rect(self.start_x,460, 10, 40)
 
-	def moveLeft(self, start_x = 250):
-		#self.start_x = 250
+	def moveLeft(self, left_x = -100):
+		self.left_x = left_x
 		'''
 		if self.start_x != 150:
 			self.start_x -= 100
 			'''
 		print("moving left:", self.shape.x, " ", self.shape.y)
-		self.shape = self.shape.move(-100, 0)
+		if self.shape.x != 150:
+			self.shape = self.shape.move(left_x, 0)
 
-	def moveRight(self, start_x = 250):
+	def moveRight(self, right_x = 100):
 		'''
 		#self.start_x = 250
 		if self.start_x != 350:
 			self.start_x += 100
 			'''
 		print("moving right:", self.shape.x, " ", self.shape.y)
-		self.shape = self.shape.move(100, 0)
+		if self.shape.x != 350:
+			self.shape = self.shape.move(right_x, 0)
 
 	def __str__(self):
 		mystr = ''
