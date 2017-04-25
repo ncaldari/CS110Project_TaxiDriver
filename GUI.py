@@ -15,12 +15,9 @@ class Taxidriver:
         blue = (0,0,255)
         green = (0,220,0)
 
-
         mytaxi = Taxi()
         #myobstacle = Obstacle()
         #myobstacle2 = Obstacle()
-
-
 
         self.startView = pygame.display.set_mode((500,500))
         pygame.display.set_caption('Taxi Driver Start Menu')
@@ -48,7 +45,7 @@ class Taxidriver:
                                 if event.type == pygame.KEYDOWN:
                                     if event.key == pygame.K_LEFT:
                                         mytaxi.moveLeft()
-                                    if event.type == pygame.K_RIGHT:
+                                    if event.key == pygame.K_RIGHT:
                                         mytaxi.moveRight()
                                 '''
                                 if pygame.Rect.collidelist(theTaxi,obstacle1, obstacle2) != -1:
@@ -65,16 +62,20 @@ class Taxidriver:
                                                 gameoverExit = True
                                             if event.type == pygame.KEYDOWN:
                                                 if event.key == pygame.K_SPACE:
-                                                    gamestartExit = False
+                                                    gameExit = True
+                                                    gameoverExit = True
+                                                    
+
                                         pygame.display.flip()
                                 '''
 
 
-                            theTaxi = pygame.draw.rect(self.gameView, blue, mytaxi.shape) #[xcoor,ycoor,width,height]
+                            pygame.draw.rect(self.gameView, blue, mytaxi.shape) #[xcoor,ycoor,width,height]
                             #obstacle1 = pygame.draw.rect(self.gameView,blue, myobstacle.shape)
                             #obstacle2 = pygame.draw.rect(self.gameView,blue, myobstacle2.shape)
                             #myobstacle.place
                             #myobstacle.place
+                            #self.gameView.blit(theTaxi)
                             pygame.display.flip()
 
             pygame.display.flip()
@@ -87,3 +88,4 @@ def main():
     #mytaxi = taxi.Taxi()
     Taxidriver()
 main()
+
