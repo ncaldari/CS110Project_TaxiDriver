@@ -42,12 +42,3 @@ class Obstacle:
 	def move(self, speed):
 		while self.ycoor >= 0:
 			self.ycoor -= speed
-
-	#def place():
-
-	def __str__(self):
-		mystr = ''
-		mystr += 'Coordinates: ' + str(self.xcoor) + ', ' + str(self.ycoor) + '\n'
-		mystr += 'Color: ' + self.color + '\n'
-		mystr += 'Speed: ' + str(self.speed)
-		return mystr
