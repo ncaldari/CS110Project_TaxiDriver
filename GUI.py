@@ -53,8 +53,10 @@ class Taxidriver:
 
                                     self.gameoverExit = pygame.display.set_mode((500,500))
                                     pygame.display.set_caption('Taxi Driver Game Over')
-                                    text_objects = font.render("Game Over", True, green)
-                                    text_objects = font.render("Play Again? Hit the Space Bar.", True, green)
+                                    text_objects3 = font.render("Game Over", True, green)
+                                    text_objects4 = font.render("Play Again? Hit the Space Bar.", True, green)
+                                    self.startView.blit(text_objects3, [150, 100])
+                                    self.startView.blit(text_objects4, [40, 300])
                                     gameoverExit = False
                                     while not gameoverExit:
                                         for event in pygame.event.get():
@@ -64,7 +66,7 @@ class Taxidriver:
                                                 if event.key == pygame.K_SPACE:
                                                     gameExit = True
                                                     gameoverExit = True
-                                                    
+
 
                                         pygame.display.flip()
                                 '''
