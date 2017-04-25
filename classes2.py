@@ -12,21 +12,21 @@ class Taxi:
 
 	def moveLeft(self, start_x = 250):
 		#self.start_x = 250
+		'''
 		if self.start_x != 150:
 			self.start_x -= 100
 			'''
-		if self.shape != 150:
-			self.shape = self.shape - 100
-			'''
+		print("moving left:", self.shape.x, " ", self.shape.y)
+		self.shape = self.shape.move(-100, 0)
 
 	def moveRight(self, start_x = 250):
+		'''
 		#self.start_x = 250
 		if self.start_x != 350:
 			self.start_x += 100
 			'''
-		if self.xcoor != 350:
-			self.xcoor += 100
-			'''
+		print("moving right:", self.shape.x, " ", self.shape.y)
+		self.shape = self.shape.move(100, 0)
 
 	def __str__(self):
 		mystr = ''
