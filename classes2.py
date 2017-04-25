@@ -8,7 +8,8 @@ class Taxi(pygame.sprite.Sprite):
 		#self.ycoor = ycoor
 		#self.start_x = start_x
 		self.color = color
-		self.image = pygame.transform.scale(pygame.image.load('car5.png'), [40,20])
+		#self.image = pygame.transform.scale(pygame.image.load('car5.png'), [40,20])
+		self.image = pygame.image.load('car5.png')
 		#pygame.Rect(xcoor, ycoor, width, height)
 		self.rect = self.image.get_rect()
 
@@ -31,7 +32,7 @@ class Taxi(pygame.sprite.Sprite):
 		if self.start_x != 350:
 			self.start_x += 100
 			'''
-		print("moving right:", self.shape.x, " ", self.shape.y)
+		print("moving right:", self.rect.x, " ", self.rect.y)
 		if self.rect.x != 350:
 			self.rect = self.rect.move(right_x, 0)
 
