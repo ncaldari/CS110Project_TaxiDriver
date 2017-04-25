@@ -14,6 +14,7 @@ class Taxidriver:
         black = (0,0,0)
         blue = (0,0,255)
         green = (0,220,0)
+        yellow = (245, 225, 0)
 
         mytaxi = Taxi()
         #myobstacle = Obstacle()
@@ -22,7 +23,7 @@ class Taxidriver:
         self.startView = pygame.display.set_mode((500,500))
         pygame.display.set_caption('Taxi Driver Start Menu')
         font = pygame.font.SysFont(None, 50)
-        text_objects = font.render("Taxi Driver", True, green)
+        text_objects = font.render("Taxi Driver", True, yellow)
         text_objects2 = font.render("Press Space Bar to Start", True, green)
         self.startView.blit(text_objects, [150, 100])
         self.startView.blit(text_objects2, [40, 300])
@@ -72,7 +73,7 @@ class Taxidriver:
                                 '''
 
 
-                            pygame.draw.rect(self.gameView, blue, mytaxi.shape) #[xcoor,ycoor,width,height]
+                            pygame.draw.rect(self.gameView, blue, mytaxi.rect) #[xcoor,ycoor,width,height]
                             #obstacle1 = pygame.draw.rect(self.gameView,blue, myobstacle.shape)
                             #obstacle2 = pygame.draw.rect(self.gameView,blue, myobstacle2.shape)
                             #myobstacle.place
@@ -90,4 +91,3 @@ def main():
     #mytaxi = taxi.Taxi()
     Taxidriver()
 main()
-
