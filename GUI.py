@@ -45,9 +45,9 @@ class Taxidriver:
                                     gameExit = True
                                 if event.type == pygame.KEYDOWN:
                                     if event.key == pygame.K_LEFT:
-                                        mytaxi.moveLeft()
+                                        mytaxi.move('left')
                                     if event.key == pygame.K_RIGHT:
-                                        mytaxi.moveRight()
+                                        mytaxi.move('right')
                                 '''
                                 if pygame.Rect.collidelist(theTaxi,obstacle1, obstacle2) != -1:
                                     gameExit = True
