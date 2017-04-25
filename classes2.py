@@ -21,9 +21,9 @@ class Taxi(pygame.sprite.Sprite):
 		if self.start_x != 150:
 			self.start_x -= 100
 			'''
-		print("moving left:", self.shape.x, " ", self.shape.y)
-		if self.shape.x != 150:
-			self.shape = self.shape.move(left_x, 0)
+		print("moving left:", self.rect.x, " ", self.rect.y)
+		if self.rect.x != 150:
+			self.rect = self.rect.move(left_x, 0)
 
 	def moveRight(self, right_x = 100):
 		'''
@@ -32,8 +32,8 @@ class Taxi(pygame.sprite.Sprite):
 			self.start_x += 100
 			'''
 		print("moving right:", self.shape.x, " ", self.shape.y)
-		if self.shape.x != 350:
-			self.shape = self.shape.move(right_x, 0)
+		if self.rect.x != 350:
+			self.rect = self.rect.move(right_x, 0)
 
 	def __str__(self):
 		mystr = ''
