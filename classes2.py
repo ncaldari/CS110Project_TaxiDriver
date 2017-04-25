@@ -1,14 +1,19 @@
 import pygame
 
 #needed to capitalize class names
-class Taxi:
-	def __init__(self, start_x = 250, color='yellow'):
+class Taxi(pygame.sprite.Sprite):
+	def __init__(self, color='yellow'):
+		pygame.sprite.Sprite.__init__(self)
 		#self.xcoor = xcoor
 		#self.ycoor = ycoor
-		self.start_x = start_x
+		#self.start_x = start_x
 		self.color = color
+		self.image = pygame.transform.scale(pygame.image.load('car5.png'), [40,20])
 		#pygame.Rect(xcoor, ycoor, width, height)
-		self.shape = pygame.Rect(self.start_x,460, 10, 40)
+		self.rect = self.image.get_rect()
+
+		self.rect.x = 250
+		self.rect.y = 460
 
 	def moveLeft(self, left_x = -100):
 		self.left_x = left_x
