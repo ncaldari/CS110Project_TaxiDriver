@@ -36,7 +36,7 @@ class Taxidriver:
                     if event.key == pygame.K_SPACE:
                         gamestartExit = True
 
-                        self.gameView = pygame.display.set_mode((500,500))
+                        #self.gameView = pygame.display.set_mode((500,500))
                         pygame.display.set_caption('Taxi Driver')
                         gameExit = False
                         while not gameExit:
@@ -51,7 +51,8 @@ class Taxidriver:
 
                             self.startView.fill(black)
                             # draw it write
-                            mytaxi.draw(startView)
+                            pygame.draw.rect(self.startView, blue, mytaxi.rect)
+                            #rect.draw(startView)
                             pygame.display.flip()
 
             pygame.display.flip()
