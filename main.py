@@ -57,10 +57,6 @@ class Taxidriver:
 
             pygame.display.flip()
 
-
-
-
-
 def main():
     #mytaxi = taxi.Taxi()
     Taxidriver()

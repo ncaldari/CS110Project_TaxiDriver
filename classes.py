@@ -1,4 +1,5 @@
 import pygame
+import random
 
 class GameObj(pygame.sprite.Sprite):
     def __init__(self, screen):
@@ -34,7 +35,7 @@ class Taxi(GameObj):
 
 #we need to integrate the spawning logic into this, might have to change it some
 class Obstacle(GameObj):
-    def __init__(self):
+    def __init__(self, ypos, vspeed):
         super(GameObj, self).__init__()
         self.image = pygame.image.load('Taxi_assets/car3.png')
         self.image = pygame.transform.scale(self.image, (60,40))
@@ -43,7 +44,9 @@ class Obstacle(GameObj):
         positions = [150,250,350]
         self.rect.x = random.choice(positions)
         self.rect.y = 0
-        self.pos = 1
+        self.vspeed = 3
 
-    def move(self, speed = 5):
-            self.rect = self.rect.move(0, speed)
+    def update(self):
+        self.rect.y += self.vspeed
+        if self.rect.y > 460:
+            self.kill()
