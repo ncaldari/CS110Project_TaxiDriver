@@ -1,6 +1,6 @@
 import pygame
 import random
-from classes2 import Taxi, Obstacle
+from classes import Taxi, Obstacle
 import pygame.font
 
 pygame.init()

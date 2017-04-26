@@ -30,15 +30,20 @@ class Taxi(GameObj):
         if l_r == 'right' and self.pos < 2:
             self.pos +=1
         self.rect.x = positions[self.pos]
-        
+
 
 #we need to integrate the spawning logic into this, might have to change it some
-class Obstacle:
-    def __init__(self, speed=10, color='gray'):
-        self.color = color
-        self.shape = pygame.Rect(xcoor,ycoor, 10, 10)
-        self.speed = speed
+class Obstacle(GameObj):
+    def __init__(self):
+        super(GameObj, self).__init__()
+        self.image = pygame.image.load('Taxi_assets/car3.png')
+        self.image = pygame.transform.scale(self.image, (60,40))
+        self.rect = self.image.get_rect()
 
-        def move(self, speed):
-            while self.ycoor >= 0:
-                self.ycoor -= speed
+        positions = [150,250,350]
+        self.rect.x = random.choice(positions)
+        self.rect.y = 0
+        self.pos = 1
+
+    def move(self, speed = 5):
+            self.rect = self.rect.move(0, speed)
