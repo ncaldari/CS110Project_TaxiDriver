@@ -16,7 +16,7 @@ class Taxi(GameObj):
         self.rect = self.image.get_rect()
 
         self.rect.x = 250
-        self.rect.y = 0
+        self.rect.y = 460
         self.pos = 1
 
     def update(self):
