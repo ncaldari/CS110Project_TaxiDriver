@@ -45,8 +45,8 @@ class Obstacle:
         self.rect.y = 0
         self.pos = 1
 
-        def move(self, speed = 5):
-            self.rect = self.rect.move(0, speed)
+    def move(self, speed = 5):
+        self.rect = self.rect.move(0, speed)
     '''
     def __init__(self, speed=10, color='gray'):
         self.color = color
