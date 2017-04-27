@@ -13,35 +13,48 @@ yellow = (245, 225, 0)
 pygame.init()
 screen = pygame.display.set_mode((500,500))
 clock = pygame.time.Clock()
-FPS = 60
-
 gameObjs = {}
 gameObjs['mytaxi'] = Taxi()
-gameObjs['obstacle'] = Obstacle(0,10)
+gameObjs['obstacles'] = []
 objectList = pygame.sprite.Group()
-objectList.add(gameObjs['mytaxi'])
-objectList.add(gameObjs['obstacle'])
-
+objectList.add(gameObjs['mytaxi']
+#objectList.add(gameObjs['obstacle'])
 def game_loop():
-    global running, gameObjs
-    game_over = False
-    running = True
-    mytaxi = gameObjs['mytaxi']
-    obstacles = gameObjs['obstacle']
+    mytaxi = Taxi()
+    obstacles= pygame.sprite.Group()
     score = 0
 
+    for i in range(0,2):
+        obstacles.add(spawn_obstacle(10))
+        score += 1
+
+    obstacles.update()
+    obstacles.draw(screen)
+
+def on_render():
+    global objectList, gameObjs, clock, screen
+    objectList.update()
+    clock.tick(60)
+    pygame.display.flip()
+
+
+def on_event(event):
+    if event.type == pygame.QUIT:
+        game_over = True
+    if event.type == pygame.KEYDOWN:
+        if event.key == pygame.K_LEFT:
+            mytaxi.move('left')
+        if event.key == pygame.K_RIGHT:
+            mytaxi.move('right')
+        screen.fill(black)
+        objectList.draw(screen)
+        pygame.display.flip()
+
+def on_execute():
+    game_over = False
     while not game_over:
         for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                game_over = True
-            if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_LEFT:
-                    mytaxi.move('left')
-                if event.key == pygame.K_RIGHT:
-                    mytaxi.move('right')
-        screen.fill(black)
-        #pygame.draw.rect(screen, blue, mytaxi.rect)
-        objectList.draw(screen)
-        obstacles.update()
-        pygame.display.flip()
-game_loop()
+            on_event(event)
+        on_render()
+        game_loop()
+on_execute()
