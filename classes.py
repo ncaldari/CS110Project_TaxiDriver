@@ -32,17 +32,18 @@ class Taxi(GameObj):
             self.pos +=1
         self.rect.x = positions[self.pos]
 
-
+def spawn_obstacle(speed):
+    positions = [150,250,350]
+    return Obstacle(random.choice(positions))
 #we need to integrate the spawning logic into this, might have to change it some
 class Obstacle(GameObj):
-    def __init__(self, ypos, vspeed):
+    def __init__(self, xpos):
         super(GameObj, self).__init__()
         self.image = pygame.image.load('Taxi_assets/car3.png')
         self.image = pygame.transform.scale(self.image, (60,40))
         self.rect = self.image.get_rect()
 
-        positions = [150,250,350]
-        self.rect.x = random.choice(positions)
+        self.rect.x = xpos
         self.rect.y = 0
         self.vspeed = 3
 
