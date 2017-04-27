@@ -40,8 +40,12 @@ def game_loop():
                 if event.key == pygame.K_RIGHT:
                     mytaxi.move('right')
         screen.fill(black)
+
         objectList.draw(screen)
         obstacles.update()
+        if obstacles.rect.y == 90:
+            print('we did it')
+
         pygame.display.flip()
 
 def startGame():
@@ -127,4 +131,3 @@ startGame()
 #     #mytaxi = taxi.Taxi()
 #     Taxidriver()
 # main()
-
