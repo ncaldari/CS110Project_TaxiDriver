@@ -18,18 +18,22 @@ FPS = 60
 gameObjs = {}
 gameObjs['mytaxi'] = Taxi()
 gameObjs['obstacle'] = Obstacle(0,10)
+gameObjs['obstacle2'] = Obstacle(0,10)
 objectList = pygame.sprite.Group()
 objectList.add(gameObjs['mytaxi'])
 objectList.add(gameObjs['obstacle'])
+objectList.add(gameObjs['obstacle2'])
 
 def game_loop():
+
     global running, gameObjs
     game_over = False
     running = True
     mytaxi = gameObjs['mytaxi']
     obstacles = gameObjs['obstacle']
+    obstacles2 = gameObjs['obstacle2']
     score = 0
-
+    sp = 0
     while not game_over:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -40,11 +44,15 @@ def game_loop():
                 if event.key == pygame.K_RIGHT:
                     mytaxi.move('right')
         screen.fill(black)
+        sp = sp + 1
 
         objectList.draw(screen)
-        obstacles.update()
-        if obstacles.rect.y == 90:
+        if sp % 50 == 0:
             print('we did it')
+            #objectList.add(gameObjs['obstacle3'])
+        obstacles.update()
+        obstacles2.update()
+
 
         pygame.display.flip()
 
