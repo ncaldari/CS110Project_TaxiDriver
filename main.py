@@ -21,8 +21,9 @@ gameObjs['obstacle'] = Obstacle(0,10)
 gameObjs['obstacle2'] = Obstacle(0,10)
 objectList = pygame.sprite.Group()
 objectList.add(gameObjs['mytaxi'])
-objectList.add(gameObjs['obstacle'])
-objectList.add(gameObjs['obstacle2'])
+obstacleList = pygame.sprite.Group()
+obstacleList.add(gameObjs['obstacle'])
+obstacleList.add(gameObjs['obstacle2'])
 
 def game_loop():
 
@@ -47,12 +48,14 @@ def game_loop():
         sp = sp + 1
 
         objectList.draw(screen)
+        obstacleList.draw(screen)
         if sp % 50 == 0:
             print('we did it')
             #objectList.add(gameObjs['obstacle3'])
         obstacles.update()
         obstacles2.update()
-
+        if pygame.sprite.spritecollide(mytaxi, obstacleList, True):
+            game_over = True
 
         pygame.display.flip()
 
