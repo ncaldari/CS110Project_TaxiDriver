@@ -36,11 +36,17 @@ def exit_menu():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 gameoverExit = True
+            '''
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_SPACE:
+                    gameoverExit = True
+                    game_over = True
+                    gamestartExit = True
+                    #startGame()
 
-
-
+                    break
+            '''
         pygame.display.flip()
-
 
 
 def game_loop():
@@ -63,10 +69,11 @@ def game_loop():
                     mytaxi.move('right')
         screen.fill(black)
         score = score + 1
+        if score % 50 == 0:
+            print(score)
 
         objectList.draw(screen)
         obstacleList.draw(screen)
-
 
         obstacles.update()
         obstacles2.update()
@@ -82,10 +89,16 @@ def startGame():
     startView = pygame.display.set_mode((500,500))
     pygame.display.set_caption('Taxi Driver Start Menu')
     font = pygame.font.SysFont(None, 50)
+    font3 = pygame.font.SysFont(None, 30)
     text_objects = font.render("Taxi Driver", True, yellow)
-    text_objects2 = font.render("Press Space Bar to Start", True, green)
+    text_objects2 = font.render("Press Space Bar to Start", True, yellow)
+    text_objects3 = font3.render("Left Key: Move Left, Right Key: Move Right", True, blue)
+    text_objects4 = font3.render("Don't Crash", True, blue)
     startView.blit(text_objects, [150, 100])
-    startView.blit(text_objects2, [40, 300])
+    startView.blit(text_objects2, [50, 300])
+    startView.blit(text_objects3, [40, 200])
+    startView.blit(text_objects4, [180, 230])
+
 
     gamestartExit = False
     while not gamestartExit:
