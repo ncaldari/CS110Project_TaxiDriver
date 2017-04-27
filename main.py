@@ -25,8 +25,25 @@ obstacleList = pygame.sprite.Group()
 obstacleList.add(gameObjs['obstacle'])
 obstacleList.add(gameObjs['obstacle2'])
 
-def game_loop():
+def exit_menu():
+    font = pygame.font.SysFont(None, 50)
+    gameoverExit = pygame.display.set_mode((500,500))
+    pygame.display.set_caption('Taxi Driver Game Over')
+    text_objects3 = font.render("Game Over", True, green)
+    gameoverExit.blit(text_objects3, [150, 100])
+    gameoverExit = False
+    while not gameoverExit:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                gameoverExit = True
 
+
+
+        pygame.display.flip()
+
+
+
+def game_loop():
     global running, gameObjs
     game_over = False
     running = True
@@ -51,11 +68,14 @@ def game_loop():
         obstacleList.draw(screen)
         if sp % 50 == 0:
             print('we did it')
-            #objectList.add(gameObjs['obstacle3'])
+
         obstacles.update()
         obstacles2.update()
         if pygame.sprite.spritecollide(mytaxi, obstacleList, True):
             game_over = True
+            exit_menu()
+
+
 
         pygame.display.flip()
 
@@ -142,3 +162,4 @@ startGame()
 #     #mytaxi = taxi.Taxi()
 #     Taxidriver()
 # main()
+
