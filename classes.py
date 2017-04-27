@@ -48,5 +48,10 @@ class Obstacle(GameObj):
 
     def update(self):
         self.rect.y += self.vspeed
-        if self.rect.y > 460:
-            self.kill()
+        #if self.rect.y > 460:
+            #self.kill()
+        positions2 = [150,250,350]
+        if self.rect.y > 500:
+            self.rect.y = 0
+            self.rect.x = random.choice(positions2)
+
