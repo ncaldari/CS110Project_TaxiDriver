@@ -1,38 +1,52 @@
-class taxi:
-	def __init__(self, color='yellow', xcoor=0, ycoor=0):
-		self.xcoor = xcoor
-		self.ycoor = ycoor
-		self.color = color
+import pygame
+import random
 
-	def moveLeft(self):
-		if self.xcoor != -1:
-			self.xcoor -= 1
-
-	def moveRight(self):
-		if self.xcoor != 1:
-			self.xcoor += 1
-
-	def __str__(self):
-		mystr = ''
-		mystr += 'Coordinates: ' + str(self.xcoor) + ', ' + str(self.ycoor) + '\n'
-		mystr += 'Color: ' + self.color
-		return mystr
+class GameObj(pygame.sprite.Sprite):
+    def __init__(self, screen):
+        self.screen = screen
 
 
-class obstacle:
-	def __init__(self, xcoor, ycoor=100, speed=10, color='gray'):
-		self.color = color
-		self.xcoor = xcoor
-		self.ycoor = ycoor
-		self.speed = speed
+        def update(self):
+            pass
 
-	def move(self, speed):
-		while self.ycoor >= 0:
-			self.ycoor -= speed
+class Taxi(GameObj):
+    def __init__(self):
+        super(GameObj,self).__init__()
+        self.image = pygame.image.load('Taxi_assets/car5.png')
+        self.image = pygame.transform.scale(self.image, (60, 40))
+        self.rect = self.image.get_rect()
 
-	def __str__(self):
-		mystr = ''
-		mystr += 'Coordinates: ' + str(self.xcoor) + ', ' + str(self.ycoor) + '\n'
-		mystr += 'Color: ' + self.color + '\n'
-		mystr += 'Speed: ' + str(self.speed)
-		return mystr
+        self.rect.x = 250
+        self.rect.y = 460
+        self.pos = 1
+
+    def update(self):
+        pass
+
+# 250 150 350
+    def move(self, l_r):
+        positions = [150,250,350]
+        if l_r == 'left' and self.pos > 0:
+            self.pos -= 1
+        if l_r == 'right' and self.pos < 2:
+            self.pos +=1
+        self.rect.x = positions[self.pos]
+
+
+#we need to integrate the spawning logic into this, might have to change it some
+class Obstacle(GameObj):
+    def __init__(self, ypos, vspeed):
+        super(GameObj, self).__init__()
+        self.image = pygame.image.load('Taxi_assets/car3.png')
+        self.image = pygame.transform.scale(self.image, (60,40))
+        self.rect = self.image.get_rect()
+
+        positions = [150,250,350]
+        self.rect.x = random.choice(positions)
+        self.rect.y = 0
+        self.vspeed = 3
+
+    def update(self):
+        self.rect.y += self.vspeed
+        if self.rect.y > 460:
+            self.kill()
