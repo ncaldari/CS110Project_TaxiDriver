@@ -42,16 +42,19 @@ class Obstacle(GameObj):
         self.rect = self.image.get_rect()
 
         positions = [150,250,350]
+        speeds = [5, 10, 15, 20]
         self.rect.x = random.choice(positions)
         self.rect.y = 0
-        self.vspeed = 3
+        self.vspeed = random.choice(speeds)
 
     def update(self):
         self.rect.y += self.vspeed
         #if self.rect.y > 460:
             #self.kill()
+        speeds2 = [10, 15, 20]
         positions2 = [150,250,350]
         if self.rect.y > 500:
             self.rect.y = 0
             self.rect.x = random.choice(positions2)
+            self.vspeed = random.choice(speeds2)
 
