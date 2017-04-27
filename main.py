@@ -51,7 +51,7 @@ def game_loop():
     obstacles = gameObjs['obstacle']
     obstacles2 = gameObjs['obstacle2']
     score = 0
-    sp = 0
+
     while not game_over:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -62,12 +62,11 @@ def game_loop():
                 if event.key == pygame.K_RIGHT:
                     mytaxi.move('right')
         screen.fill(black)
-        sp = sp + 1
+        score = score + 1
 
         objectList.draw(screen)
         obstacleList.draw(screen)
-        if sp % 50 == 0:
-            print('we did it')
+
 
         obstacles.update()
         obstacles2.update()
@@ -98,7 +97,10 @@ def startGame():
                     gamestartExit = True
                     game_loop()
         pygame.display.flip()
-startGame()
+
+def main():
+    startGame()
+main()
 
 
 # def on_loop():
