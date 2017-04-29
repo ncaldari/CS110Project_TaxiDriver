@@ -1,6 +1,6 @@
 import pygame
 import random
-from classes import Taxi, Obstacle
+from classes import Taxi, Obstacle, Lane
 import pygame.font
 import sys
 
@@ -36,16 +36,18 @@ def exit_menu():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 gameoverExit = True
-            '''
+
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_SPACE:
                     gameoverExit = True
-                    game_over = True
-                    gamestartExit = True
+                    game_over = False
+                    game_loop()
+
+                    #gamestartExit = True
                     #startGame()
 
-                    break
-            '''
+
+
         pygame.display.flip()
 
 
@@ -57,6 +59,10 @@ def game_loop():
     obstacles = gameObjs['obstacle']
     obstacles2 = gameObjs['obstacle2']
     score = 0
+    mylane0 = Lane(130)
+    mylane = Lane(230)
+    mylane2 = Lane(330)
+    mylane3 = Lane(430)
 
     while not game_over:
         for event in pygame.event.get():
@@ -72,6 +78,10 @@ def game_loop():
         if score % 50 == 0:
             print(score)
 
+        pygame.draw.rect(screen, yellow, mylane.rect)
+        pygame.draw.rect(screen, yellow, mylane2.rect)
+        pygame.draw.rect(screen, yellow, mylane0.rect)
+        pygame.draw.rect(screen, yellow, mylane3.rect)
         objectList.draw(screen)
         obstacleList.draw(screen)
 
