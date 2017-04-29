@@ -51,10 +51,15 @@ class Obstacle(GameObj):
         self.rect.y += self.vspeed
         #if self.rect.y > 460:
             #self.kill()
-        speeds2 = [10, 15, 20, 25, 30]
+        speeds2 = [15, 20, 25, 30]
         positions2 = [150,250,350]
         if self.rect.y > 500:
             self.rect.y = 0
             self.rect.x = random.choice(positions2)
             self.vspeed = random.choice(speeds2)
+
+class Lane:
+    def __init__(self, xcoor):
+        self.xcoor = xcoor
+        self.rect = pygame.Rect(xcoor, 0, 2, 500)
 
