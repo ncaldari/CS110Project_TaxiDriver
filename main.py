@@ -5,15 +5,10 @@ from classes import Taxi, Obstacle, Lane
 import pygame.font
 import sys
 
-white = (255,255,255)
-black = (0,0,0)
-blue = (0,0,255)
-green = (0,220,0)
-yellow = (245, 225, 0)
-
 pygame.init()
 
 def exit_menu(score, highscore):
+    green = (0,220,0)
     font = pygame.font.SysFont(None, 50)
     gameoverExit = pygame.display.set_mode((500,500))
     pygame.display.set_caption('Taxi Driver Game Over')
@@ -40,6 +35,9 @@ def exit_menu(score, highscore):
 
 
 def game_loop():
+    yellow = (245, 225, 0)
+    black = (0,0,0)
+    green = (0,220,0)
     screen = pygame.display.set_mode((500,500))
     font = pygame.font.SysFont(None, 30)
     pygame.display.set_caption('Taxi Driver')
@@ -111,6 +109,8 @@ def game_loop():
 
 
 def startGame():
+    yellow = (245, 225, 0)
+    blue = (0,0,255)
     startView = pygame.display.set_mode((500,500))
     pygame.display.set_caption('Taxi Driver Start Menu')
     font = pygame.font.SysFont(None, 50)
