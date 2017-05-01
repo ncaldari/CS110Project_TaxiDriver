@@ -1,5 +1,6 @@
 import pygame
 import random
+import json
 from classes import Taxi, Obstacle, Lane
 import pygame.font
 import sys
@@ -11,30 +12,19 @@ green = (0,220,0)
 yellow = (245, 225, 0)
 
 pygame.init()
-screen = pygame.display.set_mode((500,500))
-clock = pygame.time.Clock()
-FPS = 60
 
-'''
-gameObjs = {}
-gameObjs['mytaxi'] = Taxi()
-gameObjs['obstacle'] = Obstacle(0,10)
-gameObjs['obstacle2'] = Obstacle(0,10)
-objectList = pygame.sprite.Group()
-objectList.add(gameObjs['mytaxi'])
-obstacleList = pygame.sprite.Group()
-obstacleList.add(gameObjs['obstacle'])
-obstacleList.add(gameObjs['obstacle2'])
-'''
-
-
-
-def exit_menu():
+def exit_menu(score, highscore):
     font = pygame.font.SysFont(None, 50)
     gameoverExit = pygame.display.set_mode((500,500))
     pygame.display.set_caption('Taxi Driver Game Over')
     text_objects3 = font.render("Game Over", True, green)
+    text_objects4 = font.render('Score: ' + str(score), True, green)
+    text_objects5 = font.render('Play Again? Hit Space.', True, green)
+    text_objects6 = font.render("HighScore: " + str(highscore), True, green)
     gameoverExit.blit(text_objects3, [150, 100])
+    gameoverExit.blit(text_objects4, [160, 200])
+    gameoverExit.blit(text_objects5, [60, 400])
+    gameoverExit.blit(text_objects6, [120, 300])
     gameoverGetOut = False
     while not gameoverGetOut:
         for event in pygame.event.get():
@@ -44,14 +34,16 @@ def exit_menu():
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_SPACE:
                     gameoverGetOut = True
-                    #main()
-                    #gamestartExit = True
                     startGame()
 
         pygame.display.flip()
 
 
 def game_loop():
+    screen = pygame.display.set_mode((500,500))
+    font = pygame.font.SysFont(None, 30)
+    pygame.display.set_caption('Taxi Driver')
+
     gameObjs = {}
     gameObjs['mytaxi'] = Taxi()
     gameObjs['obstacle'] = Obstacle(0,10)
@@ -73,8 +65,8 @@ def game_loop():
     mylane2 = Lane(330)
     mylane3 = Lane(430)
 
-
     while not game_over:
+        text_objects4 = font.render('Score: ' + str(score), True, green)
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -86,8 +78,6 @@ def game_loop():
                     mytaxi.move('right')
         screen.fill(black)
         score = score + 1
-        if score % 50 == 0:
-            print(score)
 
         pygame.draw.rect(screen, yellow, mylane.rect)
         pygame.draw.rect(screen, yellow, mylane2.rect)
@@ -99,12 +89,28 @@ def game_loop():
         obstacles.update()
         obstacles2.update()
         if pygame.sprite.spritecollide(mytaxi, obstacleList, True):
+
+            jfile = open('high_score.json', 'r')
+            jstr = jfile.read()
+            jdictionary = json.loads(jstr)
+            newList = []
+
+            jfile.close()
+            if jdictionary["High_Score"] < score:
+                jfile = open('high_score.json', 'w')
+                jdictionary["High_Score"] = score
+                jstr2 = json.dumps(jdictionary)
+                jfile.write(jstr2)
+                jfile.close()
+
             game_over = True
-            exit_menu()
+            exit_menu(score, jdictionary["High_Score"])
+
+        screen.blit(text_objects4, [10, 10])
         pygame.display.flip()
 
+
 def startGame():
-    #global running, gameObjs
     startView = pygame.display.set_mode((500,500))
     pygame.display.set_caption('Taxi Driver Start Menu')
     font = pygame.font.SysFont(None, 50)
