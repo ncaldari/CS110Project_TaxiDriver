@@ -23,7 +23,7 @@ class Taxi(GameObj):
     def update(self):
         pass
 
-# 250 150 350
+
     def move(self, l_r):
         positions = [150,250,350]
         if l_r == 'left' and self.pos > 0:
@@ -33,7 +33,7 @@ class Taxi(GameObj):
         self.rect.x = positions[self.pos]
 
 
-#we need to integrate the spawning logic into this, might have to change it some
+
 class Obstacle(GameObj):
     def __init__(self, ypos, vspeed):
         super(GameObj, self).__init__()
@@ -62,4 +62,5 @@ class Lane:
     def __init__(self, xcoor):
         self.xcoor = xcoor
         self.rect = pygame.Rect(xcoor, 0, 2, 500)
+
 
