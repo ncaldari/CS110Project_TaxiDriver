@@ -15,6 +15,7 @@ screen = pygame.display.set_mode((500,500))
 clock = pygame.time.Clock()
 FPS = 60
 
+'''
 gameObjs = {}
 gameObjs['mytaxi'] = Taxi()
 gameObjs['obstacle'] = Obstacle(0,10)
@@ -24,6 +25,9 @@ objectList.add(gameObjs['mytaxi'])
 obstacleList = pygame.sprite.Group()
 obstacleList.add(gameObjs['obstacle'])
 obstacleList.add(gameObjs['obstacle2'])
+'''
+
+
 
 def exit_menu():
     font = pygame.font.SysFont(None, 50)
@@ -31,28 +35,33 @@ def exit_menu():
     pygame.display.set_caption('Taxi Driver Game Over')
     text_objects3 = font.render("Game Over", True, green)
     gameoverExit.blit(text_objects3, [150, 100])
-    gameoverExit = False
-    while not gameoverExit:
+    gameoverGetOut = False
+    while not gameoverGetOut:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                gameoverExit = True
+                gameoverGetOut = True
 
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_SPACE:
-                    gameoverExit = True
-                    game_over = False
-                    game_loop()
-
+                    gameoverGetOut = True
+                    #main()
                     #gamestartExit = True
-                    #startGame()
-
-
+                    startGame()
 
         pygame.display.flip()
 
 
 def game_loop():
-    global running, gameObjs
+    gameObjs = {}
+    gameObjs['mytaxi'] = Taxi()
+    gameObjs['obstacle'] = Obstacle(0,10)
+    gameObjs['obstacle2'] = Obstacle(0,10)
+    objectList = pygame.sprite.Group()
+    objectList.add(gameObjs['mytaxi'])
+    obstacleList = pygame.sprite.Group()
+    obstacleList.add(gameObjs['obstacle'])
+    obstacleList.add(gameObjs['obstacle2'])
+
     game_over = False
     running = True
     mytaxi = gameObjs['mytaxi']
@@ -64,7 +73,9 @@ def game_loop():
     mylane2 = Lane(330)
     mylane3 = Lane(430)
 
+
     while not game_over:
+
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 game_over = True
@@ -90,12 +101,10 @@ def game_loop():
         if pygame.sprite.spritecollide(mytaxi, obstacleList, True):
             game_over = True
             exit_menu()
-
-
-
         pygame.display.flip()
 
 def startGame():
+    #global running, gameObjs
     startView = pygame.display.set_mode((500,500))
     pygame.display.set_caption('Taxi Driver Start Menu')
     font = pygame.font.SysFont(None, 50)
@@ -109,7 +118,6 @@ def startGame():
     startView.blit(text_objects3, [40, 200])
     startView.blit(text_objects4, [180, 230])
 
-
     gamestartExit = False
     while not gamestartExit:
         for event in pygame.event.get():
@@ -119,11 +127,14 @@ def startGame():
                 if event.key == pygame.K_SPACE:
                     gamestartExit = True
                     game_loop()
+
+
         pygame.display.flip()
 
 def main():
     startGame()
 main()
+
 
 
 
