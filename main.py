@@ -14,24 +14,27 @@ blue = (0,0,255)
 class Taxidriver:
 
     def exit_menu(self,score, highscore):
-
-        font = pygame.font.SysFont(None, 50)
+        #setting up the exit_menu screen
         self.gameoverExit = pygame.display.set_mode((500,500))
+        #setting up all the writing on the menu
+        font = pygame.font.SysFont(None, 50)
         pygame.display.set_caption('Taxi Driver Game Over')
         text_objects3 = font.render("Game Over", True, yellow)
         text_objects4 = font.render('Score: ' + str(score), True, yellow)
         text_objects5 = font.render('Play Again? Hit Space.', True, yellow)
         text_objects6 = font.render("HighScore: " + str(highscore), True, yellow)
+        #putting the writing on the screen
         self.gameoverExit.blit(text_objects3, [150, 100])
         self.gameoverExit.blit(text_objects4, [160, 200])
         self.gameoverExit.blit(text_objects5, [60, 400])
         self.gameoverExit.blit(text_objects6, [120, 300])
+        # a loop for the exit_menu that allows the user quit or play again
         gameoverGetOut = False
         while not gameoverGetOut:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     gameoverGetOut = True
-
+                #if the user hits space it exits the loop and runs the startGame function
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_SPACE:
                         gameoverGetOut = True
@@ -41,11 +44,11 @@ class Taxidriver:
 
 
     def game_loop(self):
-
+        #setting up the game screen
         self.screen = pygame.display.set_mode((500,500))
-        font = pygame.font.SysFont(None, 30)
         pygame.display.set_caption('Taxi Driver')
-
+        #setting up all the objects and writing
+        font = pygame.font.SysFont(None, 30)
         gameObjs = {}
         gameObjs['mytaxi'] = Taxi()
         gameObjs['obstacle'] = Obstacle(0,10)
@@ -57,7 +60,6 @@ class Taxidriver:
         obstacleList.add(gameObjs['obstacle2'])
 
         game_over = False
-        running = True
         mytaxi = gameObjs['mytaxi']
         obstacles = gameObjs['obstacle']
         obstacles2 = gameObjs['obstacle2']
@@ -66,10 +68,10 @@ class Taxidriver:
         mylane = Lane(230)
         mylane2 = Lane(330)
         mylane3 = Lane(430)
-
+        # the game loop
         while not game_over:
             text_objects4 = font.render('Score: ' + str(score), True, green)
-
+            # the event loop
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     game_over = True
@@ -79,8 +81,9 @@ class Taxidriver:
                     if event.key == pygame.K_RIGHT:
                         mytaxi.move('right')
             self.screen.fill(black)
+            #accumulating the score, score goes up by 1 every run through the loop
             score = score + 1
-
+            #drawing everything on screen
             pygame.draw.rect(self.screen, yellow, mylane.rect)
             pygame.draw.rect(self.screen, yellow, mylane2.rect)
             pygame.draw.rect(self.screen, yellow, mylane0.rect)
@@ -90,8 +93,9 @@ class Taxidriver:
 
             obstacles.update()
             obstacles2.update()
+            #detecting a collision between the taxi and an obstacle
             if pygame.sprite.spritecollide(mytaxi, obstacleList, True):
-
+                #using json to keep track of highscore
                 jfile = open('high_score.json', 'r')
                 jstr = jfile.read()
                 jdictionary = json.loads(jstr)
@@ -103,7 +107,7 @@ class Taxidriver:
                     jstr2 = json.dumps(jdictionary)
                     jfile.write(jstr2)
                     jfile.close()
-
+                #exits the loop and calls the exit_menu function after the collision
                 game_over = True
                 Taxidriver.exit_menu(self, score, jdictionary["High_Score"])
 
@@ -112,25 +116,28 @@ class Taxidriver:
 
 
     def startGame(self):
-
+        #setting up the startGame menu
         self.startView = pygame.display.set_mode((500,500))
         pygame.display.set_caption('Taxi Driver Start Menu')
+        #setting up all the writing on the menu
         font = pygame.font.SysFont(None, 50)
         font3 = pygame.font.SysFont(None, 30)
         text_objects = font.render("Taxi Driver", True, yellow)
         text_objects2 = font.render("Press Space Bar to Start", True, yellow)
         text_objects3 = font3.render("Left Key: Move Left, Right Key: Move Right", True, blue)
         text_objects4 = font3.render("Don't Crash", True, blue)
+        #putting the writing on the screen
         self.startView.blit(text_objects, [150, 100])
         self.startView.blit(text_objects2, [50, 300])
         self.startView.blit(text_objects3, [40, 200])
         self.startView.blit(text_objects4, [180, 230])
-
+        # a loop for the startGame menu that allows the user quit or play
         gamestartExit = False
         while not gamestartExit:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     gamestartExit = True
+                #if the user presses space it exits the loop and calls the game_loop function
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_SPACE:
                         gamestartExit = True
@@ -140,7 +147,9 @@ class Taxidriver:
             pygame.display.flip()
 
 def main():
+    #creating the Taxidriver object "T"
     T = Taxidriver()
+    #running the game starting with startGame function 
     T.startGame()
 
 main()
