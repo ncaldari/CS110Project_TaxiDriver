@@ -3,7 +3,6 @@ import random
 import json
 from classes import Taxi, Obstacle, Lane
 import pygame.font
-import sys
 
 pygame.init()
 
