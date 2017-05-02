@@ -14,7 +14,7 @@ class Taxidriver:
 
     def exit_menu(self,score, highscore):
         #setting up the exit_menu screen
-        self.gameoverExit = pygame.display.set_mode((500,500))
+        gameoverExit = pygame.display.set_mode((500,500))
         #setting up all the writing on the menu
         font = pygame.font.SysFont(None, 50)
         pygame.display.set_caption('Taxi Driver Game Over')
@@ -23,10 +23,10 @@ class Taxidriver:
         text_objects5 = font.render('Play Again? Hit Space.', True, yellow)
         text_objects6 = font.render("HighScore: " + str(highscore), True, yellow)
         #putting the writing on the screen
-        self.gameoverExit.blit(text_objects3, [150, 100])
-        self.gameoverExit.blit(text_objects4, [160, 200])
-        self.gameoverExit.blit(text_objects5, [60, 400])
-        self.gameoverExit.blit(text_objects6, [120, 300])
+        gameoverExit.blit(text_objects3, [150, 100])
+        gameoverExit.blit(text_objects4, [160, 200])
+        gameoverExit.blit(text_objects5, [60, 400])
+        gameoverExit.blit(text_objects6, [120, 300])
         # a loop for the exit_menu that allows the user quit or play again
         gameoverGetOut = False
         while not gameoverGetOut:
@@ -44,7 +44,7 @@ class Taxidriver:
 
     def game_loop(self):
         #setting up the game screen
-        self.screen = pygame.display.set_mode((500,500))
+        screen = pygame.display.set_mode((500,500))
         pygame.display.set_caption('Taxi Driver')
         #setting up all the objects and writing
         font = pygame.font.SysFont(None, 30)
@@ -79,16 +79,16 @@ class Taxidriver:
                         mytaxi.move('left')
                     if event.key == pygame.K_RIGHT:
                         mytaxi.move('right')
-            self.screen.fill(black)
+            screen.fill(black)
             #accumulating the score, score goes up by 1 every run through the loop
             score = score + 1
             #drawing everything on screen
-            pygame.draw.rect(self.screen, yellow, mylane.rect)
-            pygame.draw.rect(self.screen, yellow, mylane2.rect)
-            pygame.draw.rect(self.screen, yellow, mylane0.rect)
-            pygame.draw.rect(self.screen, yellow, mylane3.rect)
-            objectList.draw(self.screen)
-            obstacleList.draw(self.screen)
+            pygame.draw.rect(screen, yellow, mylane.rect)
+            pygame.draw.rect(screen, yellow, mylane2.rect)
+            pygame.draw.rect(screen, yellow, mylane0.rect)
+            pygame.draw.rect(screen, yellow, mylane3.rect)
+            objectList.draw(screen)
+            obstacleList.draw(screen)
 
             obstacles.update()
             obstacles2.update()
@@ -110,13 +110,13 @@ class Taxidriver:
                 game_over = True
                 Taxidriver.exit_menu(self, score, jdictionary["High_Score"])
 
-            self.screen.blit(text_objects4, [10, 10])
+            screen.blit(text_objects4, [10, 10])
             pygame.display.flip()
 
 
     def startGame(self):
         #setting up the startGame menu
-        self.startView = pygame.display.set_mode((500,500))
+        startView = pygame.display.set_mode((500,500))
         pygame.display.set_caption('Taxi Driver Start Menu')
         #setting up all the writing on the menu
         font = pygame.font.SysFont(None, 50)
@@ -126,10 +126,10 @@ class Taxidriver:
         text_objects3 = font3.render("Left Key: Move Left, Right Key: Move Right", True, blue)
         text_objects4 = font3.render("Don't Crash", True, blue)
         #putting the writing on the screen
-        self.startView.blit(text_objects, [150, 100])
-        self.startView.blit(text_objects2, [50, 300])
-        self.startView.blit(text_objects3, [40, 200])
-        self.startView.blit(text_objects4, [180, 230])
+        startView.blit(text_objects, [150, 100])
+        startView.blit(text_objects2, [50, 300])
+        startView.blit(text_objects3, [40, 200])
+        startView.blit(text_objects4, [180, 230])
         # a loop for the startGame menu that allows the user quit or play
         gamestartExit = False
         while not gamestartExit:
