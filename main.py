@@ -148,7 +148,7 @@ class Taxidriver:
 def main():
     #creating the Taxidriver object "T"
     T = Taxidriver()
-    #running the game starting with startGame function 
+    #running the game starting with startGame function
     T.startGame()
 
 main()
