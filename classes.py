@@ -51,7 +51,7 @@ class Obstacle(GameObj):
         self.rect.y += self.vspeed
         #if self.rect.y > 460:
             #self.kill()
-        speeds2 = [15, 20, 25, 30]
+        speeds2 = [10, 15, 20]
         positions2 = [150,250,350]
         if self.rect.y > 500:
             self.rect.y = 0
