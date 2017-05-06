@@ -67,8 +67,10 @@ class Taxidriver:
         mylane = Lane(230)
         mylane2 = Lane(330)
         mylane3 = Lane(430)
+        clock = pygame.time.Clock()
         # the game loop
         while not game_over:
+            clock.tick(45)
             score_counter_text = font.render('Score: ' + str(score), True, green)
             # the event loop
             for event in pygame.event.get():
